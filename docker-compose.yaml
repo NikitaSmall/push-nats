@@ -14,5 +14,6 @@ services:
     #   - "3001:3000"
     depends_on:
       - nats
+      - pub
   nats:
     image: nats:2.0.4
