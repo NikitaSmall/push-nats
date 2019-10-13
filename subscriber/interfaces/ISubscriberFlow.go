@@ -1,9 +1,7 @@
 package interfaces
 
-import (
-	nats "github.com/nats-io/nats.go"
-)
+import stan "github.com/nats-io/stan.go"
 
 type ISubscriberFlow interface {
-	Handle(m *nats.Msg)
+	Handle(m *stan.Msg)
 }

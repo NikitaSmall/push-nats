@@ -3,12 +3,12 @@ package commands
 import (
 	"log"
 
-	nats "github.com/nats-io/nats.go"
 	"github.com/nikitasmall/push-nats/publisher/interfaces"
 )
 
 type PublishCommand struct {
-	Connect *nats.Conn
+	// Connect *nats.Conn
+	Connect interfaces.IConnect
 }
 
 func (pc PublishCommand) Publish(topic string, message []byte) {

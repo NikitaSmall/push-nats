@@ -10,10 +10,11 @@ import (
 
 func main() {
 	time.Sleep(2 * time.Second)
-	ns := connect.NewNats("nats://nats:4222")
+	// ns := connect.NewNats("nats://nats:4222") // nats
+	nss := connect.NewNatsStream("test-cluster", "subscriber", "nats://nats:4222") // streams
 
 	waiter := make(chan struct{})
-	ns.Subscribe("test", flows.SubscriberFlow{waiter}.Handle)
+	nss.Subscribe("test", flows.SubscriberFlow{Waiter: waiter}.Handle)
 	fmt.Println("start subscriber!")
 	<-waiter
 }

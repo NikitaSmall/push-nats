@@ -12,13 +12,14 @@ func main() {
 	waiter := make(chan struct{})
 	time.Sleep(5 * time.Second)
 	publishCommand := commands.PublishCommand{
-		Connect: connect.NewNats("nats://nats:4222"),
+		//Connect: connect.NewNats("nats://nats:4222"), // nats
+		Connect: connect.NewNatsStream("test-cluster", "publisher", "nats://nats:4222"),
 	}
 
-	for !publishCommand.Connect.IsConnected() {
-		fmt.Println("connecting...")
-		time.Sleep(2 * time.Second)
-	}
+	// for !publishCommand.Connect.IsConnected() {
+	// 	fmt.Println("connecting...")
+	// 	time.Sleep(2 * time.Second)
+	// }
 
 	fmt.Println("start publisher!")
 

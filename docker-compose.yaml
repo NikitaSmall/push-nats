@@ -6,17 +6,20 @@ services:
     # ports:
     #   - "3000:3000"
     depends_on:
-      - nats
+      # - nats
+      - nats-stream
   sub:
     build:
       context: ./subscriber
     # ports:
     #   - "3001:3000"
     depends_on:
-      - nats
+      # - nats
       - pub
+      - nats-stream
   nats:
     image: nats:2.0.4
-    expose:
-      - "6222"
-      - "4222"
+  nats-stream:
+    image: nats-streaming:0.16.2
+    depends_on:
+      - nats
